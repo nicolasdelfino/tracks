@@ -6,34 +6,12 @@ import filesize from 'rollup-plugin-filesize';
 import { uglify } from 'rollup-plugin-uglify';
 
 export default [
-  // browser-friendly UMD build
   {
-    input: 'src/main.js',
+    input: 'src/tracks.js',
     output: {
-      name: 'tracks',
+      name: 'Tracks',
       file: pkg.browser,
-      format: 'umd'
-    },
-    plugins: [
-      resolve(),
-      commonjs(),
-      babel({
-        exclude: ['node_modules/**']
-      }),
-      uglify(),
-      filesize()
-    ]
-  }
-];
-
-/*
-,
-  {
-    input: 'src/main.js',
-    output: {
-      name: 'tracks',
-      file: pkg.main,
-      format: 'cjs'
+      format: 'iife'
     },
     plugins: [
       resolve(),
@@ -46,9 +24,9 @@ export default [
     ]
   },
   {
-    input: 'src/main.js',
+    input: 'src/tracks.js',
     output: {
-      name: 'tracks',
+      name: 'Tracks',
       file: pkg.module,
       format: 'es'
     },
@@ -62,4 +40,4 @@ export default [
       filesize()
     ]
   }
-*/
+];
