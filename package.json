@@ -1,5 +1,5 @@
 {
-  "name": "tracks",
+  "name": "tracks-js",
   "version": "1.0.0",
   "module": "dist/tracks.esm.js",
   "browser": "dist/tracks.iife.js",
