@@ -2,6 +2,7 @@
 
 # tracks.js
 
-#### A minimalistic library for animating elements as they mount / unmount.
+Observes and animates DOM elements on mount / unmount by using the MutationObserver API and
+by temporarily injecting inline styles.
 
-## 2.66kb gzipped 😀
+## 2.61kb gzipped 
