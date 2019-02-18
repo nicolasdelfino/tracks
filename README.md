@@ -2,13 +2,13 @@
 
 # tracks.js
 
-#### Description:
+### Description:
 
 Tracks animates DOM elements from one state to another by temporarily injecting styles (Tracks.fromTo), its real strength is its capability to listen to the creation and deletion of DOM elements by using the MutationObserver API (Tracks.on).
 
 ##### 2.61kb gzipped 
 
-#### Methods
+### Methods
 
 ##### Tracks.on (selector / mount fn -> el / unmount fn -> el)
 Can be used in two ways, if you don't need to latch on the unmount hook just return the fromTo animation:
@@ -41,6 +41,8 @@ Tracks.on(
 ````
 
 ##### Tracks.fromTo
+Animates an element from one state to another
+
 ```js
 // states
 const stateA = { width: 0, height: 0, opacity: 0 };
@@ -54,3 +56,39 @@ Reverse the latest animation made with Tracks (flips states).
 
 ##### Tracks.getList
 Outputs elements that have been animated with Tracks.
+
+### Config (optional)
+A config may be provided to output internal Tracks logs or to set the default ease (default is linear)
+
+```js
+window.TracksConfig = {
+  logs: true / false,
+  ease: 'easeOutQuint',
+};
+````
+### Supported easing values 
+linear
+easeInSine
+easeOutSine
+easeInOutSine
+easeInQuad
+easeOutQuad
+easeInOutQuad
+easeInCubic
+easeOutCubic
+easeInOutCubic
+easeInQuart
+easeOutQuart
+easeInOutQuart
+easeInQuint
+easeOutQuint
+easeInOutQuint
+easeInExpo
+easeOutExpo
+easeInOutExpo
+easeInCirc
+easeOutCirc
+easeInOutCirc
+easeInBack
+easeOutBack
+easeInOutBack
