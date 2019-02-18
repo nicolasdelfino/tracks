@@ -1,6 +1,6 @@
 {
   "name": "tracks-js",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "main": "dist/tracks.iife.js",
   "module": "dist/tracks.esm.js",
   "browser": "dist/tracks.iife.js",
