@@ -1,4 +1,6 @@
+<p align="center">
 <img src="/logo.png" width="300">
+</p>
 
 # tracks.js
 
@@ -7,6 +9,9 @@
 Tracks animates DOM elements from one state to another by temporarily injecting styles (Tracks.fromTo), its real strength is its capability to listen to the creation and deletion of DOM elements by using the MutationObserver API (Tracks.on).
 
 ##### 2.61kb gzipped 
+
+### CodeSandbox demo
+https://codesandbox.io/s/2j323l98j
 
 ### Methods
 
