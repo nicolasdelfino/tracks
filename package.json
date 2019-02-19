@@ -29,6 +29,7 @@
     "pretest": "npm run build"
   },
   "files": [
+    "src",
     "dist"
   ]
 }
