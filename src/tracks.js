@@ -323,7 +323,9 @@ window.Tracks = window.tracks = (function() {
   /*
   Tracks.on
   */
-  function on(identifier, onAdded = null, onRemoved = null) {
+  function on(identifier, onAdded, onRemoved) {
+    onAdded = onAdded || null;
+    onRemoved = onRemoved || null;
     if (onAdded == null && onRemoved == null) {
       return console.error(
         'Tracks - Both onAdded / onRemoved arguments cannot be null'
@@ -348,7 +350,7 @@ window.Tracks = window.tracks = (function() {
     });
 
     if (JSON.stringify(observerList).indexOf(identifier) === -1) {
-      observerList.push({ identifier, mObserver });
+      observerList.push({ identifier: identifier, mObserver: mObserver });
     } else {
       // Tracks - on identifier already in list
     }
@@ -369,14 +371,17 @@ window.Tracks = window.tracks = (function() {
     element,
     fromProps,
     toProps,
-    duration = 1,
-    isReverse = false
+    duration,
+    isReverse
   ) {
     return new Promise(function(resolve, reject) {
       /*
       Validate args
       element, duration, fromProps, toProps
       */
+      duration = duration || 1;
+      isReverse = isReverse || false;
+
       if (
         !element ||
                 typeof fromProps !== typeDefs.OBJECT ||
@@ -452,8 +457,8 @@ window.Tracks = window.tracks = (function() {
           return;
         }
         fromKeyPairs.push({
-          key,
-          value,
+          key: key,
+          value: value,
           handler: keyMap[key]
         });
       });
@@ -491,8 +496,8 @@ window.Tracks = window.tracks = (function() {
           }
 
           var tkp = {
-            key,
-            value,
+            key: key,
+            value: value,
             handler: keyMap[key]
           };
 
@@ -540,7 +545,7 @@ window.Tracks = window.tracks = (function() {
       });
 
       /* Add element to list (for reversing animations) */
-      var toList = { el: element, fromProps, toProps, duration: duration };
+      var toList = { el: element, fromProps: fromProps, toProps: toProps, duration: duration };
       if (!elementList.includes(toList) && !isReverse) {
         elementList.push(toList);
         document.dispatchEvent(
