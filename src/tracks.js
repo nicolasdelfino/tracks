@@ -185,13 +185,11 @@ window.Tracks = window.tracks = (function() {
   */
   function applyAnimation(element, transitionTime, ease) {
     transitionAgents.forEach(function(agent) {
-      element.style[agent] =
-        typeDefs.DEFAULT_TWEEN_PROP +
-        ' ' +
-        transitionTime +
-        typeDefs.DEFAULT_TIME_UNIT +
-        ' ' +
-        ease;
+      element.style.cssText += agent + ": " 
+      + typeDefs.DEFAULT_TWEEN_PROP + " " 
+      + transitionTime 
+      + typeDefs.DEFAULT_TIME_UNIT + " " 
+      + ease;
     });
   }
 
@@ -202,10 +200,12 @@ window.Tracks = window.tracks = (function() {
     element.style[prop.key] = prop.value;
     if (prop.handler) {
       transformAgents.forEach(function(agent) {
-        element.style[agent] = prop.handler(prop.value);
+        // element.style[agent] = prop.handler(prop.value);
+        element.style.cssText += agent + ": " + prop.handler(prop.value) + ";";
       });
     } else {
-      element.style[prop.key] = prop.value;
+      // element.style[prop.key] = prop.value;
+      element.style.cssText += prop.key + ":" + prop.value + ";"
     }
   }
 
@@ -224,9 +224,11 @@ window.Tracks = window.tracks = (function() {
   Reset styles
   */
   function resetStyles(element) {
-    element.style.transition = '';
+    // element.style.transition = '';
+    element.style.cssText += 'transition: "";'
     transformAgents.forEach(function(agent) {
-      element.style[agent] = '';
+      // element.style[agent] = '';
+      element.style.cssText += agent + ": " + "";
     });
   }
 
@@ -425,10 +427,12 @@ window.Tracks = window.tracks = (function() {
       Give the element a default width and height if the properties haven't been specified
       */
       if (element.style.cssText.indexOf('width') === -1) {
-        element.style.width = '0px';
+        // element.style.width = '0px';
+        element.style.cssText += "width: 0px";
       }
       if (element.style.cssText.indexOf('height') === -1) {
-        element.style.height = '0px';
+        // element.style.height = '0px';
+        element.style.cssText += "height: 0px";
       }
 
       /*
@@ -530,7 +534,9 @@ window.Tracks = window.tracks = (function() {
         applyStyles(element, prop);
       });
 
-      window.requestAnimationFrame(function() {
+      var raf = window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame;
+ 
+      raf(function() {
         setTimeout(function() {
           applyAnimation(element, transitionTime, easingEquationTo);
           animation.to.forEach(function(prop) {
@@ -542,7 +548,7 @@ window.Tracks = window.tracks = (function() {
             resolve();
           }, transitionTime);
         }, delayTime);
-      });
+      }.bind(window));
 
       /* Add element to list (for reversing animations) */
       var toList = { el: element, fromProps: fromProps, toProps: toProps, duration: duration };
