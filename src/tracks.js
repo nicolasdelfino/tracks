@@ -343,6 +343,11 @@ window.Tracks = window.tracks = (function() {
       return console.error('Tracks - MutationObserver needs to be polyfilled');
     }
 
+    if (window.navigator.userAgent.match(/(MSIE|Trident)/)) { 
+      // silent return for ie11
+      return;
+    }
+
     if (onAdded != null && typeof onAdded !== typeDefs.FUNCTION) {
       return console.error('Tracks - onAdded argument is not a function');
     }
